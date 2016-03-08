@@ -54,32 +54,32 @@ namespace SeleniumTests {
 
         [Test]
         public void PageLoads() {
-            driver.Navigate().GoToUrl("https://www.wikipedia.org/");
+            driver.Navigate().GoToUrl("http://warpech.github.io/SeleniumTest/wwwroot/regular.html");
             var html = driver.PageSource;
             StringAssert.Contains("<body", html);
         }
 
         [Test]
         public void BodyElementExists() {
-            driver.Navigate().GoToUrl("https://www.wikipedia.org/");
+            driver.Navigate().GoToUrl("http://warpech.github.io/SeleniumTest/wwwroot/regular.html");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            IWebElement element = wait.Until(driver => driver.FindElement(By.XPath("(//body)[1]")));
-            Assert.IsTrue(IsElementPresent(By.XPath("(//body)[1]")));
+            IWebElement element = wait.Until(driver => driver.FindElement(By.XPath("(//h1)[1]")));
+            Assert.IsTrue(IsElementPresent(By.XPath("(//h1)[1]")));
         }
 
         [Test]
         public void Polyfill_PageLoads() {
-            driver.Navigate().GoToUrl("https://www.polymer-project.org/1.0/");
+            driver.Navigate().GoToUrl("http://warpech.github.io/SeleniumTest/wwwroot/webcomponents.html");
             var html = driver.PageSource;
             StringAssert.Contains("<body", html);
         }
 
         [Test]
         public void Polyfill_BodyElementExists() {
-            driver.Navigate().GoToUrl("https://www.polymer-project.org/1.0/");
+            driver.Navigate().GoToUrl("http://warpech.github.io/SeleniumTest/wwwroot/webcomponents.html");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            IWebElement element = wait.Until(driver => driver.FindElement(By.XPath("(//body)[1]")));
-            Assert.IsTrue(IsElementPresent(By.XPath("(//body)[1]")));
+            IWebElement element = wait.Until(driver => driver.FindElement(By.XPath("(//h1)[1]")));
+            Assert.IsTrue(IsElementPresent(By.XPath("(//h1)[1]")));
         }
 
         private bool IsElementPresent(By by) {
