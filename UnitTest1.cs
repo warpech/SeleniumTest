@@ -2,11 +2,9 @@
 using System.Text;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.IE;
 
-namespace SeleniumTests {
+namespace SeleniumTest {
     [TestFixture("firefox")]
     [TestFixture("chrome")]
     [TestFixture("internet explorer")]
@@ -15,36 +13,14 @@ namespace SeleniumTests {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
         private string browser;
-        private Uri remoteWebDriverUri = new Uri("http://127.0.0.1:4444/wd/hub");
-
+        
         public MarcinNunit(string browser) {
             this.browser = browser;
         }
 
         [SetUp]
         public void SetupTest() {
-            DesiredCapabilities capabilities;
-
-            switch (this.browser) {
-                case "chrome":
-                    capabilities = DesiredCapabilities.Chrome();
-                    driver = new RemoteWebDriver(remoteWebDriverUri, capabilities);
-                    break;
-                case "internet explorer":
-                    InternetExplorerOptions options = new InternetExplorerOptions();
-                    options.IgnoreZoomLevel = true;
-                    capabilities = (DesiredCapabilities)options.ToCapabilities();
-                    driver = new RemoteWebDriver(remoteWebDriverUri, capabilities, TimeSpan.FromSeconds(10));
-                    break;
-                case "edge":
-                    capabilities = DesiredCapabilities.Edge();
-                    driver = new RemoteWebDriver(remoteWebDriverUri, capabilities);
-                    break;
-                default:
-                    capabilities = DesiredCapabilities.Firefox();
-                    driver = new RemoteWebDriver(remoteWebDriverUri, capabilities);
-                    break;
-            }
+            driver = WebDriverFactory.Create(this.browser);
             verificationErrors = new StringBuilder();
         }
 
