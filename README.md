@@ -31,6 +31,6 @@ Before running the steps, you need to:
 ## Run the test
 
 1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-2.52.0.jar`
-2. Open Visual Studio and enable  Test Explorer (Test > Window > Test Explorer)
+2. Open `SeleniumTest.sln` in Visual Studio and enable Test Explorer (Test > Window > Test Explorer)
 3. Press "Run all" in Test Explorer
 4. Don't touch your keyboard or mouse while the tests are being executed :)
