@@ -15,6 +15,7 @@ namespace SeleniumTests {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
         private string browser;
+        private Uri remoteWebDriverUri = new Uri("http://127.0.0.1:4444/wd/hub");
 
         public MarcinNunit(string browser) {
             this.browser = browser;
@@ -27,20 +28,21 @@ namespace SeleniumTests {
             switch (this.browser) {
                 case "chrome":
                     capabilities = DesiredCapabilities.Chrome();
-                    driver = new RemoteWebDriver(capabilities);
+                    driver = new RemoteWebDriver(remoteWebDriverUri, capabilities);
                     break;
                 case "internet explorer":
                     InternetExplorerOptions options = new InternetExplorerOptions();
                     options.IgnoreZoomLevel = true;
-                    driver = new RemoteWebDriver(options.ToCapabilities());
+                    capabilities = (DesiredCapabilities)options.ToCapabilities();
+                    driver = new RemoteWebDriver(remoteWebDriverUri, capabilities, TimeSpan.FromSeconds(10));
                     break;
                 case "edge":
                     capabilities = DesiredCapabilities.Edge();
-                    driver = new RemoteWebDriver(capabilities);
+                    driver = new RemoteWebDriver(remoteWebDriverUri, capabilities);
                     break;
                 default:
                     capabilities = DesiredCapabilities.Firefox();
-                    driver = new RemoteWebDriver(capabilities);
+                    driver = new RemoteWebDriver(remoteWebDriverUri, capabilities);
                     break;
             }
             verificationErrors = new StringBuilder();
