@@ -2,19 +2,18 @@
 using System.Text;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-//using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.IE;
 
 namespace SeleniumTests {
     [TestFixture("firefox")]
-    //[TestFixture("chrome")]
+    [TestFixture("chrome")]
     [TestFixture("internet explorer")]
+    [TestFixture("edge")]
     public class MarcinNunit {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
-        private bool acceptNextAlert = true;
         private string browser;
 
         public MarcinNunit(string browser) {
@@ -23,19 +22,25 @@ namespace SeleniumTests {
 
         [SetUp]
         public void SetupTest() {
-            switch (browser) {
-                /*case "chrome":
-                    driver = new ChromeDriver();
-                    break;*/
+            DesiredCapabilities capabilities;
+
+            switch (this.browser) {
+                case "chrome":
+                    capabilities = DesiredCapabilities.Chrome();
+                    driver = new RemoteWebDriver(capabilities);
+                    break;
                 case "internet explorer":
                     InternetExplorerOptions options = new InternetExplorerOptions();
                     options.IgnoreZoomLevel = true;
-                    //options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
-                    //options.EnsureCleanSession = true;
-                    driver = new InternetExplorerDriver(options);
+                    driver = new RemoteWebDriver(options.ToCapabilities());
+                    break;
+                case "edge":
+                    capabilities = DesiredCapabilities.Edge();
+                    driver = new RemoteWebDriver(capabilities);
                     break;
                 default:
-                    driver = new FirefoxDriver();
+                    capabilities = DesiredCapabilities.Firefox();
+                    driver = new RemoteWebDriver(capabilities);
                     break;
             }
             verificationErrors = new StringBuilder();
