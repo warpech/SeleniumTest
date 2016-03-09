@@ -25,7 +25,7 @@ Before running the steps, you need to:
 - Download Google Chrome Driver from http://docs.seleniumhq.org/download/
   - This is just a single file (`chromedriver.exe`).
   - Put this file to `C:\selenium\drivers`.
-- Add `C:\selenium\drivers` to %PATH%
+- **Add `C:\selenium\drivers` to %PATH%. You may need to restart your Command Prompt (cmd) after this**
 - Firefox drivers are built-in to Selenium Standalone Server; no need to download these
 
 ## Run the test
