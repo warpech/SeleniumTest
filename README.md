@@ -33,4 +33,5 @@ Before running the steps, you need to:
 1. Start Selenium Remote Driver: `java -jar selenium-server-standalone-2.52.0.jar`
 2. Open `SeleniumTest.sln` in Visual Studio and enable Test Explorer (Test > Window > Test Explorer)
 3. Press "Run all" in Test Explorer
+   - If you get an error about some packages not installed, right click on the project in Solution Explorer. Choose "Manage NuGet Packages" and click on "Restore".
 4. Don't touch your keyboard or mouse while the tests are being executed :)
