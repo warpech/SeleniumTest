@@ -6,6 +6,20 @@ Reported in:
 - https://github.com/webcomponents/webcomponentsjs/issues/504
 - https://github.com/SeleniumHQ/selenium/issues/1765
 
+## Adding tests for your project?
+
+Add packages:
+
+```
+Install-Package Selenium.WebDriver
+Install-Package Selenium.Support
+Install-Package NUnit -Version 2.6.4
+Install-Package NUnitTestAdapter
+Install-Package NUnit.Runners -Version 2.6.4
+```
+
+More info: http://training-course-material.com/training/Selenium_WebDriver_in_C-Sharp
+
 ## Prepare your environment
 
 Before running the steps, you need to:
