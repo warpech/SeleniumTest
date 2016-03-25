@@ -8,6 +8,10 @@ Reported in:
 
 ## Adding tests for your project?
 
+Go to Tools - NuGet Packet Manager - Packet Manager Console.
+
+In the console, choose your test project from the "Default project" dropdown:
+
 Add packages:
 
 ```
